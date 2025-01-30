@@ -1,0 +1,60 @@
+<div class="container">
+    <div aria-live="polite" aria-atomic="true" class="position-relative top-0 end-0">
+        <div class="toast-container top-0 end-0 p-3">
+            <% if (success && success.length > 0) { %>
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="flashMessage" style="display: flow;">
+                <div class="toast-header success-toast">
+                    <strong class="me-auto" style="text-transform: uppercase;">Success</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body success-toast">
+                    <%= success %>
+                </div>
+            </div>
+            <% } %>
+            <% if (errors && errors.length > 0) { %>
+                <% errors.forEach(function(error) { %>
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="flashMessage" style="display: flow;">
+                    <div class="toast-header error-toast">
+                        <strong class="me-auto" style="text-transform: uppercase;">Error</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body error-toast">
+                        <%= error.msg %>
+                    </div>
+                </div>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+
+
+    <div class="spacer"></div>
+    <p class="fs-2 text-uppercase pHdrs"><span>ADD INVENTORY</span></p>
+    <div class="row">
+        <form method="post" action="/administrator/addInventory" enctype="multipart/form-data">
+            <div class="form-floating mb-3">
+                <input type="text" id="invName" name="invName" class="form-control" placeholder="Inventory Name" style="border: 1px solid black;">
+                <label for="floatingInput">Inventory Name</label>
+            </div>
+            <div class="form-floating mb-3">  
+                <textarea class="form-control" id="invDesc" name="invDesc" placeholder="Inventory Description" rows="3" style="border: 1px solid black;"></textarea>
+                <label for="floatingInput">Inventory Description</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select form-select-sm" id="invCategory" name="invCategory" aria-label="form-select-sm example" style="border: 1px solid black;">
+                    <option selected value="">Select Category</option>
+                    <option value="book">Book</option>
+                    <option value="magzine">Magzine</option>
+                    <option value="newsletter">Newsletter</option>
+                </select>
+            </div>
+            <div class="form-floating" style="margin: 10px 0;">
+                <input class="form-control" id="invImg" name="invImg" type="file" id="formFile" enctype="multipart/form-data" style="border: 1px solid black;">
+                <label for="formFile" class="form-label">Inventory Image</label> 
+            </div>
+            <button type="submit" id="addRecp" name="addRecp" class="btn btn-warning fw-bold">ADD INVENTORY</button>
+        </form>
+    </div>
+    <div class="spacer"></div>
+</div>

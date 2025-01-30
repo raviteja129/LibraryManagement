@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="spacer"></div>
+    <p class="fs-2 text-uppercase pHdrs"><span>EDIT INVENTORY</span></p>
+    <div class="row">
+        <form enctype="multipart/form-data">
+            <div class="form-floating mb-3">
+                <input type="text" value="<%= data.inv_name %>" id="invName" name="invName" class="form-control" placeholder="Inventory Name" style="border: 1px solid black;">
+                <label for="floatingInput">Inventory Name</label>
+            </div>
+            <div class="form-floating mb-3">  
+                <input class="form-control" value="<%= data.inv_desc %>" id="invDesc" name="invDesc" placeholder="Inventory Description" rows="3" style="border: 1px solid black;">
+                <label for="floatingInput">Inventory Description</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select form-select-sm" id="invCategory" name="invCategory" aria-label="form-select-sm example" style="border: 1px solid black;">
+                    <option value="">Select Category</option>
+                    <option value="book" <%= selectedCategory === 'book' ? 'selected' : '' %>>Book</option>
+                    <option value="magzine" <%= selectedCategory === 'magzine' ? 'selected' : '' %>>Magzine</option>
+                    <option value="newsletter" <%= selectedCategory === 'newsletter' ? 'selected' : '' %>>Newsletter</option>
+                </select>
+            </div>
+            <% if(imageURL === null || imageURL === '') { %>
+                <div class="form-floating" style="margin: 10px 0;">
+                    <input class="form-control" id="invImg" name="invImg" type="file" id="formFile" enctype="multipart/form-data" style="border: 1px solid black;">
+                    <label for="formFile" class="form-label">Inventory Image</label> 
+                </div>
+            <% } else { %>
+                <div class="mb-3" style="margin: 10px 0;">
+                    <label for="exampleFormControlInput1" class="form-label">Inventory Image</label><br>
+                    <img src="../../images/inventories/<%= imageURL %>" height="50" disabled>
+                </div>
+            <% } %>
+            <button type="submit" id="noScript" name="updateInventory" class="btn btn-warning fw-bold">UPDATE INVENTORY</button>
+        </form>
+    </div>
+    <div class="spacer"></div>
+</div>

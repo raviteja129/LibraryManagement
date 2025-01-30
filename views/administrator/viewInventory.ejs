@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="spacer"></div>
+    <p class="fs-2 text-uppercase pHdrs"><span>INVENTORY LIST</span></p>
+    <form action="/administrator/filterInventory" method="post">
+        <div class="row align-items-center">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <!-- <input type="text" name="userEmail" class="form-control" placeholder="Search Email" aria-label="Recipient's username" aria-describedby="button-addon2"  style="border: 1px solid black;"> -->
+                    <select id="inputCategory" name="inputCategory" class="form-select"  style="border: 1px solid black;">
+                        <option selected value="">Select Category</option>
+                        <option value="book">Book</option>
+                        <option value="magzine">Magzine</option>
+                        <option value="newsletter">Newsletter</option>
+                    </select>
+                    <button class="btn btn-success" type="submit" id="button-addon2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-12 mb-3 mb-sm-0">
+            <table class="table text-center table-bordered table-hover" style="margin-top: 20px;">
+                <thead class="table-success text-center">
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(data && data?.length > 0) {
+                        data.forEach(function(item) { %>
+                    <tr style="vertical-align: middle;">
+                        <th scope="row"><%= item.inv_id %></th>
+                        <td><%= item.inv_name %></td>
+                        <td><%= item.inv_desc %></td>
+                        <td><%= item.inv_category%></td>
+                        <td>
+                            <% if (item.inv_img == null) { %>
+                                <img src="../images/not-found.png" width="50" height="50">
+                            <% } else { %>
+                            <img src="../images/inventories/<%= item.inv_img %>" width="50" height="50">
+                            <% } %>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"></path>
+                                </svg>
+                            </a>
+                            <a href="/administrator/editInventory/<%= item.inv_id %>" class="btn btn-warning">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                            </svg>
+                        </a>
+                        </td>
+                    </tr>
+                    <% }); } else { %>
+                        <tr style="vertical-align: middle;">
+                            <td colspan="6" class="text-center">No Data Found</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
